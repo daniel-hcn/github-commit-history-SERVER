@@ -1,5 +1,8 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { FindBranchesResponseDto } from './dto/github.dto';
+import { Controller, Get, Param, Query } from '@nestjs/common';
+import {
+  FindBranchesResponseDto,
+  FindCommitsResponseDto,
+} from './dto/github.dto';
 import { GithubService } from './github.service';
 
 @Controller('github/repository/:repositoryName')
@@ -7,8 +10,11 @@ export class GithubController {
   constructor(private readonly githubService: GithubService) {}
 
   @Get('/commits')
-  getCommits(): any[] {
-    return [];
+  async getCommits(
+    @Param('repositoryName') repositoryName: string,
+    @Query('branch') branchName?: string,
+  ): Promise<FindCommitsResponseDto[]> {
+    return await this.githubService.getCommits(repositoryName, branchName);
   }
 
   @Get('/branches')
