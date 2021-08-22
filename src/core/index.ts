@@ -1,1 +1,1 @@
-export { Request, RequestFaker } from './Request';
+export { Request, RequestFaker } from './request';
