@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { Request } from 'src/core/request';
+import { Request } from 'src/core';
 import {
   FindBranchesResponseDto,
   FindCommitsResponseDto,
@@ -21,11 +21,11 @@ export class GithubService {
         `${this.apiUrl}/${repositoryName}/commits`,
         parameters,
       );
-      return response.data.map((commit) => ({
-        author: commit.commit.author.name,
-        date: commit.commit.author.date,
-        message: commit.commit.message,
-        sha: commit.sha,
+      return response.data.map(({ commit, sha }) => ({
+        author: commit.author.name,
+        date: commit.author.date,
+        message: commit.message,
+        sha,
       }));
     } catch (err) {
       console.error(err.response);

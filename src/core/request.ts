@@ -27,3 +27,8 @@ export class Request {
     });
   }
 }
+
+export class RequestFaker {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public async get(): Promise<void> {}
+}
