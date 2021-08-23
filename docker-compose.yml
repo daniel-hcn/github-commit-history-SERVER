@@ -11,3 +11,10 @@ services:
       - '3001:3001'
     environment:
       - PORT=3001
+    networks:
+      - github-commit-history
+
+networks:
+  github-commit-history:
+    external: false
+    name: github-commit-history
