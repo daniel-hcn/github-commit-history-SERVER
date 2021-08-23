@@ -21,9 +21,15 @@ export class Request {
       method: 'GET',
       url: url,
       params: queryParams,
+      headers: { Authorization: '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' },
       paramsSerializer: (params: Parameters) => {
         return this.stringifyQueryParams(params);
       },
     });
   }
+}
+
+export class RequestFaker {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public async get(): Promise<void> {}
 }
